@@ -1,0 +1,7 @@
+POSTGRES_DB = postgres
+POSTGRES_USER = postgres
+POSTGRES_PASSWORD = FM05091946
+DB_HOST = localhost
+DB_PORT = 5432
+SECRET_KEY = django-insecure-8f2)($h1s3a=x+g8_fl8nfnwh=@d7co=ck&%hm(65q)d2=s)@0
+DEBUG = True
