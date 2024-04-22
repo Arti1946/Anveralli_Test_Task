@@ -1,0 +1,37 @@
+{% load static %}
+<nav class="navbar navbar-light" style="background-color: gray">
+  <div class="container">
+    <ul class="nav nav-pills">
+      {% with request.resolver_match.view_name as view_name %}
+      {% if user.is_authenticated %}
+         <li class="nav-item" >
+          <a class="nav-link {% if view_name  == 'orders:orders_list' %}active{% endif %}" href="{% url 'orders:orders_list' %}">Все заказы</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  {% if view_name  == 'orders:lk' %}active{% endif %}" href="{% url 'orders:lk' %}">Мои заказы</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if view_name  == 'orders:order_create' %}active{% endif %}" href="{% url 'orders:order_create' %}">Создать заказ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  {% if view_name  == 'users:password_change_form' %}active{% endif %}" href="{% url 'users:password_change_form' %}" >Изменить пароль</a>
+        </li>
+          <form method="post" action="{% url 'users:logout' %}", style="height: 2px">
+            {% csrf_token %}
+            <button type="submit" style="background-color: gray; border: none; lighting-color: gray">Выйти</button>
+          </form>
+        <li class="nav-item">
+            <a class="nav-link link-dark" > Пользователь: <b>{{ user.username }}</b> </a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link  {% if view_name  == 'users:login' %}active{% endif %}" href="{% url 'users:login' %}">Войти</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  {% if view_name  == 'users:signup' %}active{% endif %}" href="{% url 'users:signup' %}">Регистрация</a>
+        </li>
+      {% endif %}
+      {% endwith %}
+    </ul>
+  </div>
+</nav>

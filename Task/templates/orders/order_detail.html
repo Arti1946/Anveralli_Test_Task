@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ order.title }}
+{% endblock %}
+{% block content %}
+  <div class="row">
+      <aside class="col-12 col-md-3">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <h3>{{ order.title }}</h3>
+            </li>
+            <li class="list-group-item">
+              Дата публикации: {{ order.pub_date|date:"d E Y" }}
+            </li>
+            <li class="list-group-item">
+              Заказчик: {{ order.customer.username }}
+            </li>
+              <li class="list-group-item">
+                Цена: {{ order.price }}
+              </li>
+          </ul>
+        </aside>
+        <article class="col-12 col-md-9">
+          <p>
+            {{ order.description }}
+          </p>
+        </article>
+      </div>
+{% endblock %}
