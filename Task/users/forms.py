@@ -9,7 +9,6 @@ class CreationForm(UserCreationForm):
         fields = (
             "username",
             "email",
-            "password",
             "first_name",
             "last_name",
             "experience",

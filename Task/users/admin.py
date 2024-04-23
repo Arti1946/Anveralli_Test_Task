@@ -16,3 +16,4 @@ class CustomUserAdmin(UserAdmin):
     ]
     list_filter = ["username", "email"]
     search_fields = ["username"]
+    list_editable = ["role"]

@@ -11,11 +11,10 @@ class OrderAdmin(admin.ModelAdmin):
         "price",
         "description",
         "customer",
-        "executor",
     )
     search_fields = ("title",)
     list_filter = ("customer", "pub_date", "price")
-    list_editable = ("title", "price", "description", "customer", "executor")
+    list_editable = ("title", "price", "description", "customer")
 
     def get_queryset(self, request):
         return (

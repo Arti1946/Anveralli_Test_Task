@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block title %}
+  {% if is_edit %}
+    Выбор исполнителя
+  {% else %}
     Создать заказ
+  {% endif %}
 {% endblock %}
 {% block content %}
   <div class="container py-5">
@@ -24,6 +28,11 @@
               {% endfor %}
             {% endif %}
             <form method="post"
+              {% if is_edit %}
+                action="{% url 'orders:choose_executor' order_id %}"
+              {% else %}
+                action="{% url 'orders:order_create' %}"
+              {% endif %}
             enctype="multipart/form-data"
             >
               {% csrf_token %}

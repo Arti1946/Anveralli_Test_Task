@@ -13,10 +13,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG")
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '[::1]',
-    'testserver',
+    "localhost",
+    "127.0.0.1",
+    "[::1]",
+    "testserver",
 ]
 
 
@@ -129,5 +129,3 @@ LOGOUT_URL = "users:logout"
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
-
-ROLES = {"Customer": "Заказчик", "Executor": "Исполнитель"}

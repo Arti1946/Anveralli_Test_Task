@@ -3,11 +3,11 @@
 {% block content %}
     <ul>
         <li>
-            {{ profile.last_name }} {{ profile.name }}
+            <b>Фамилия Имя</b>: {{ profile.last_name }} {{ profile.first_name }}
         </li>
-        <li> {{ profile.role }} </li>
+        <li> <b>Роль</b>: {{ profile.role }} </li>
         <li>
-            {{ profile.experience }}
+            <b>Опыт</b>: {{ profile.experience }}
         </li>
     </ul>
 {% endblock %}

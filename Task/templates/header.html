@@ -4,15 +4,22 @@
     <ul class="nav nav-pills">
       {% with request.resolver_match.view_name as view_name %}
       {% if user.is_authenticated %}
+        {% if request.user.role == "executor" %}
+         <li class="nav-item" >
+          <a class="nav-link {% if view_name  == 'orders:responses' %}active{% endif %}" href="{% url 'orders:responses' %}">Отклики</a>
+         </li>
+        {% endif %}
          <li class="nav-item" >
           <a class="nav-link {% if view_name  == 'orders:orders_list' %}active{% endif %}" href="{% url 'orders:orders_list' %}">Все заказы</a>
         </li>
         <li class="nav-item">
           <a class="nav-link  {% if view_name  == 'orders:lk' %}active{% endif %}" href="{% url 'orders:lk' %}">Мои заказы</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link {% if view_name  == 'orders:order_create' %}active{% endif %}" href="{% url 'orders:order_create' %}">Создать заказ</a>
-        </li>
+        {% if request.user.role == "customer" %}
+          <li class="nav-item">
+            <a class="nav-link {% if view_name  == 'orders:order_create' %}active{% endif %}" href="{% url 'orders:order_create' %}">Создать заказ</a>
+          </li>
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link  {% if view_name  == 'users:password_change_form' %}active{% endif %}" href="{% url 'users:password_change_form' %}" >Изменить пароль</a>
         </li>

@@ -10,20 +10,46 @@
               <h3>{{ order.title }}</h3>
             </li>
             <li class="list-group-item">
-              Дата публикации: {{ order.pub_date|date:"d E Y" }}
+              <b>Дата публикации</b>: {{ order.pub_date|date:"d E Y" }}
             </li>
             <li class="list-group-item">
-              Заказчик: {{ order.customer.username }}
+              <b>Заказчик</b>: {{ order.customer.username }}
             </li>
+            <li class="list-group-item">
+              <b>Цена</b>: {{ order.price }}
+            </li>
+            {% if order.executor %}
               <li class="list-group-item">
-                Цена: {{ order.price }}
+                <b>Исполнитель</b>: {{ order.executor }}
               </li>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+              {% if request.user.role == "executor" and not reply %}
+                  <a class="btn btn-primary" href="{% url 'orders:reply_order' order.id %}">
+                    Откликнуться
+                  </a>
+              {% endif %}
+            {% endif %}
           </ul>
         </aside>
-        <article class="col-12 col-md-9">
+        <article class="col-12 col-md-9" style="text-align: center">
+          <h3>Описание</h3>
           <p>
             {{ order.description }}
           </p>
         </article>
+          {% if not order.executor %}
+            {% for i in order.orders_responses.all %}
+              <div class="col-sm-2">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ i.responses.first_name }} {{ i.responses.last_name }} <a href="{% url "users:profile" i %}">{{ i }}</a></h5>
+                      <p class="card-text">{{ i.responses.experience }}</p>
+                      <a class="btn btn-primary" href="{% url 'orders:choose_executor' order.id i.responses.id %}">Выбрать</a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
       </div>
 {% endblock %}

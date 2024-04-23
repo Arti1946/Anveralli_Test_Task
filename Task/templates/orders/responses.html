@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}
+    {% if lk %}
+        Мои заказы
+    {% else %}
+        Все заказы
+    {% endif %}
+{% endblock %}
+{% block content %}
+    {% for i in resp %}
+        <h3><a class="link" href="{% url 'orders:order_detail' i.orders.id %}"><b>{{ i.orders.title }}</b></a></h3>
+        <ul>
+          <li>
+             <b>Заказчик</b>: <a href="{% url 'users:profile' i.orders.customer.id%}"><b>{{ i.orders.customer.username }}</b></a>
+          </li>
+          <li>
+             <b>Цена</b>: {{ i.orders.price }}
+          </li>
+          <li>
+             <b>Дата публикации</b>: {{ i.orders.pub_date|date:"d E Y" }}
+          </li>
+        </ul>
+      {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+{% endblock %}

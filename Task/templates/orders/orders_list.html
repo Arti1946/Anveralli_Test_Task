@@ -13,6 +13,11 @@
           <li>
              <b>Заказчик</b>: <a href="{% url 'users:profile' order.customer.id%}"><b>{{ order.customer.username }}</b></a>
           </li>
+          {% if order.executor %}
+            <li>
+                <b>Исполнитель</b>: <a href="{% url 'users:profile' order.executor.id%}"><b>{{ order.executor.username }}</b></a>
+            </li>
+          {% endif %}
           <li>
              <b>Цена</b>: {{ order.price }}
           </li>
