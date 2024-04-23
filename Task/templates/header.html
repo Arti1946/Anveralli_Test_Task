@@ -4,7 +4,7 @@
     <ul class="nav nav-pills">
       {% with request.resolver_match.view_name as view_name %}
       {% if user.is_authenticated %}
-        {% if request.user.role == "executor" %}
+        {% if request.user.role == "Исполнитель" %}
          <li class="nav-item" >
           <a class="nav-link {% if view_name  == 'orders:responses' %}active{% endif %}" href="{% url 'orders:responses' %}">Отклики</a>
          </li>
@@ -15,7 +15,7 @@
         <li class="nav-item">
           <a class="nav-link  {% if view_name  == 'orders:lk' %}active{% endif %}" href="{% url 'orders:lk' %}">Мои заказы</a>
         </li>
-        {% if request.user.role == "customer" %}
+        {% if request.user.role == "Заказчик" %}
           <li class="nav-item">
             <a class="nav-link {% if view_name  == 'orders:order_create' %}active{% endif %}" href="{% url 'orders:order_create' %}">Создать заказ</a>
           </li>
